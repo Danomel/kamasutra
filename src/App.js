@@ -9,7 +9,6 @@ const App = () => {
       <Header />
       <Navbar />
       <Profile />
-      третье изменение
     </div>
   );
 };
