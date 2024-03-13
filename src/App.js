@@ -9,7 +9,7 @@ const App = () => {
       <Header />
       <Navbar />
       <Profile />
-      Приветasd
+      второе изменение
     </div>
   );
 };
