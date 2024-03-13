@@ -9,7 +9,7 @@ const App = () => {
       <Header />
       <Navbar />
       <Profile />
-      второе изменение
+      третье изменение
     </div>
   );
 };
