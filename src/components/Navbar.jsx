@@ -1,17 +1,18 @@
+import s from "./Navbar.module.css";
 const Navbar = () => {
   return (
-    <nav className="nav">
-      <div>
-        <a href="q">Profile</a>
+    <nav className={s.nav}>
+      <div className={`${s.item} ${s.active}`}>
+        <a>Profile</a>
       </div>
-      <div>
-        <a href="q">Messages</a>
+      <div className={s.item}>
+        <a>Messages</a>
       </div>
-      <div>
-        <a href="q">News</a>
+      <div className={s.item}>
+        <a>News</a>
       </div>
-      <div>
-        <a href="q">Settings</a>
+      <div className={s.item}>
+        <a>Settings</a>
       </div>
     </nav>
   );
