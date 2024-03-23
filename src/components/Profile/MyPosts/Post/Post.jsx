@@ -1,5 +1,5 @@
 import s from "./Post.module.css";
-const Post = () => {
+const Post = (props) => {
   return (
     <div>
       <div className={s.item}>
@@ -7,9 +7,9 @@ const Post = () => {
           src="https://avatars.mds.yandex.net/get-kino-vod-films-gallery/28788/47e2fd514411e18b76af786d7417062d/380x240"
           alt=""
         />
-        post1
+        {props.message}
         <div>
-          <span>Like</span>
+          <span>{props.like}</span>
         </div>
       </div>
     </div>
