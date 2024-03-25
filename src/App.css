@@ -9,11 +9,7 @@
   "n c";
 }
 
-.content {
+.app-wrapper-content{
   grid-area: c;
   background-color: cornflowerblue;
-}
-
-.content img {
-  width: 100%;
 }
