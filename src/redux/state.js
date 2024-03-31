@@ -14,6 +14,7 @@ let state = {
         like: 15,
       },
     ],
+    newPostText: "it-kamasutra.com",
   },
   dialogsPage: {
     messages: [
@@ -67,13 +68,19 @@ let state = {
   },
 };
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
   let newPost = {
     id: 5,
-    message: postMessage,
+    message: state.profilePage.newPostText,
     like: 0,
   };
   state.profilePage.posts.push(newPost);
+  state.profilePage.newPostText = "";
+  reRenderEntireTree(state);
+};
+
+export let updateNewPostText = (newText) => {
+  state.profilePage.newPostText = newText;
   reRenderEntireTree(state);
 };
 
