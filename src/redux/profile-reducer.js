@@ -18,7 +18,6 @@ const initialState = {
 };
 
 // const profileReducer = (state = initialState, action) => {
-//   debugger;
 //   switch (action.type) {
 //     case ADD_POST:
 //       let newPost = {
@@ -37,7 +36,6 @@ const initialState = {
 //   }
 
 const profileReducer = (state = initialState, action) => {
-  debugger;
   switch (action.type) {
     case ADD_POST:
       let newPost = {
@@ -50,6 +48,7 @@ const profileReducer = (state = initialState, action) => {
       return { ...state, posts: [...state.posts, newPost], newPostText: "" };
     case UPDATE_NEW_POST_TEXT:
       // state.newPostText = action.text;
+      console.log(state.newPostText);
       return { ...state, newPostText: action.text };
     default:
       return state;
@@ -75,7 +74,7 @@ export const addPostActionCreater = () => ({
   type: ADD_POST,
 });
 
-export const updateNewPostTextActionCreaater = (text) => ({
+export const updateNewPostTextActionCreater = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   text: text,
 });
