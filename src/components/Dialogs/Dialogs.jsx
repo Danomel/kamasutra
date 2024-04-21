@@ -1,16 +1,17 @@
-import { NavLink } from "react-router-dom";
 import s from "./Dialogs.module.css";
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
 const Dialogs = (props) => {
-  let dialogsElements = props.dialogs.map((d) => (
-    <DialogItem name={d.name} id={d.id} />
+  let state = props.dialogsPage;
+  let dialogsElements = state.dialogs.map((d) => (
+    <DialogItem name={d.name} id={d.id} key={d.id} />
   ));
-  let messageElements = props.messages.map((m) => (
-    <Message message={m.message} />
+  let messageElements = state.messages.map((m) => (
+    <Message message={m.message} key={m.id} />
   ));
-  let newMessageBody = props.newMessageBody;
+  debugger;
+  let newMessageBody = state.newMessageBody;
   let onSendMessageClick = () => {
     props.onSendMessageClick();
   };

@@ -35,21 +35,44 @@ const initialState = {
 //       return state;
 //   }
 
+// const profileReducer = (state = initialState, action) => {
+//   switch (action.type) {
+//     case ADD_POST:
+//       let newPost = {
+//         id: 5,
+//         message: state.newPostText,
+//         like: 0,
+//       };
+//       // state.posts.push(newPost);
+//       // state.newPostText = "";
+//       return { ...state, posts: [...state.posts, newPost], newPostText: "" };
+//     case UPDATE_NEW_POST_TEXT:
+//       // state.newPostText = action.text;
+//       console.log(state.newPostText);
+//       return { ...state, newPostText: action.text };
+//     default:
+//       return state;
+//   }
+
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_POST:
+    case ADD_POST: {
       let newPost = {
         id: 5,
         message: state.newPostText,
         like: 0,
       };
-      // state.posts.push(newPost);
-      // state.newPostText = "";
-      return { ...state, posts: [...state.posts, newPost], newPostText: "" };
-    case UPDATE_NEW_POST_TEXT:
-      // state.newPostText = action.text;
-      console.log(state.newPostText);
-      return { ...state, newPostText: action.text };
+      let stateCopy = { ...state };
+      stateCopy.posts = [...state.posts];
+      stateCopy.posts.push(newPost);
+      stateCopy.newPostText = "";
+      return stateCopy;
+    }
+    case UPDATE_NEW_POST_TEXT: {
+      let stateCopy = { ...state };
+      stateCopy.newPostText = action.text;
+      return stateCopy;
+    }
     default:
       return state;
   }
@@ -60,12 +83,12 @@ const profileReducer = (state = initialState, action) => {
   //     message: state.newPostText,
   //     like: 0,
   //   };
-  //   state.posts.push(newPost);
-  //   state.newPostText = "";
-  //   return state;
+  // state.posts.push(newPost);
+  // state.newPostText = "";
+  // return state;
   // } else if (action.type === UPDATE_NEW_POST_TEXT) {
-  //   state.newPostText = action.text;
-  //   return state;
+  // state.newPostText = action.text;
+  // return state;
   // } else {
   //   return state;
   // }
