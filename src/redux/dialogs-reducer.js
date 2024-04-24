@@ -84,7 +84,6 @@ const dialogsReducer = (state = initialState, action) => {
         id: 6,
         message: body,
       });
-      debugger;
       return stateCopy;
     }
     default:
