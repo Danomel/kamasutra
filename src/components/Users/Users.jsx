@@ -1,37 +1,15 @@
+import axios from "axios";
 import styles from "./users.module.css";
+import userPhoto from "../../assets/images/user.png";
 
 const Users = (props) => {
-  debugger;
-  if (props.users.lenght === 0) {
-    props.setUsers([
-      {
-        id: 1,
-        photoUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_%D0%9C%D0%B5%D0%B4%D0%B2%D0%B5%D0%B4%D0%B5%D0%B2_%2808-04-2022%29.jpg/270px-%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_%D0%9C%D0%B5%D0%B4%D0%B2%D0%B5%D0%B4%D0%B5%D0%B2_%2808-04-2022%29.jpg",
-        fullName: "Dmitry",
-        status: "I'm a boss",
-        location: { city: "Minsk", country: "Belarus" },
-        followed: false,
-      },
-      {
-        id: 2,
-        photoUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_%D0%9C%D0%B5%D0%B4%D0%B2%D0%B5%D0%B4%D0%B5%D0%B2_%2808-04-2022%29.jpg/270px-%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_%D0%9C%D0%B5%D0%B4%D0%B2%D0%B5%D0%B4%D0%B5%D0%B2_%2808-04-2022%29.jpg",
-        fullName: "Sasha",
-        status: "I'm a boss too",
-        location: { city: "Moscow", country: "Russia" },
-        followed: true,
-      },
-      {
-        id: 3,
-        photoUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_%D0%9C%D0%B5%D0%B4%D0%B2%D0%B5%D0%B4%D0%B5%D0%B2_%2808-04-2022%29.jpg/270px-%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_%D0%9C%D0%B5%D0%B4%D0%B2%D0%B5%D0%B4%D0%B5%D0%B2_%2808-04-2022%29.jpg",
-        fullName: "Andrew",
-        status: "I'm a boss too",
-        location: { city: "Kiev", country: "Ukraine" },
-        followed: false,
-      },
-    ]);
+  if (props.users.length === 0) {
+    axios
+      .get(`https://social-network.samuraijs.com/api/1.0/users`)
+      .then((response) => {
+        debugger;
+        props.setUsers(response.data.items);
+      });
   }
 
   return (
@@ -40,7 +18,11 @@ const Users = (props) => {
         <div key={u.id}>
           <span>
             <div>
-              <img src={u.photoUrl} alt="хуй" className={styles.userPhoto} />
+              <img
+                src={u.photos.small != null ? u.photos.small : userPhoto}
+                alt=""
+                className={styles.userPhoto}
+              />
             </div>
             <div>
               {u.followed ? (
@@ -64,12 +46,12 @@ const Users = (props) => {
           </span>
           <span>
             <span>
-              <div>{u.fullname}</div>
+              <div>{u.name}</div>
               <div>{u.status}</div>
             </span>
             <span>
-              <div>{u.location.city}</div>
-              <div>{u.location.country}</div>
+              <div>{"u.location.city"}</div>
+              <div>{"u.location.country"}</div>
               <div></div>
             </span>
           </span>
