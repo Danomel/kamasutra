@@ -1,5 +1,6 @@
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const ADD_POST = "ADD-POST";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
 
 const initialState = {
   posts: [
@@ -15,6 +16,7 @@ const initialState = {
     },
   ],
   newPostText: "it-kamasutra.com",
+  profile: null,
 };
 
 // const profileReducer = (state = initialState, action) => {
@@ -73,6 +75,9 @@ const profileReducer = (state = initialState, action) => {
       stateCopy.newPostText = action.text;
       return stateCopy;
     }
+    case SET_USER_PROFILE: {
+      return { ...state, profile: action.profile };
+    }
     default:
       return state;
   }
@@ -100,5 +105,9 @@ export const addPostActionCreater = () => ({
 export const updateNewPostTextActionCreater = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   text: text,
+});
+export const setUserProfile = (profile) => ({
+  type: SET_USER_PROFILE,
+  profile,
 });
 export default profileReducer;

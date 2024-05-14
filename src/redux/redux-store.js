@@ -10,7 +10,7 @@ let rootReducer = combineReducers({
   sidebar: sidebarReducer,
   usersPage: UsersReducer,
 });
-
 let store = configureStore({ reducer: rootReducer });
+window.store = store;
 
 export default store;
