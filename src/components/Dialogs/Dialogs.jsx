@@ -10,7 +10,6 @@ const Dialogs = (props) => {
   let messageElements = state.messages.map((m) => (
     <Message message={m.message} key={m.id} />
   ));
-  debugger;
   let newMessageBody = state.newMessageBody;
   let onSendMessageClick = () => {
     props.onSendMessageClick();
