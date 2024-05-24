@@ -18,18 +18,21 @@ const LoginForm = (props) => {
         ) {
           errors.email = "Invalid email address";
         }
+
         return errors;
       }}
-      onSubmit={(values, { setSubmitting, resetForm }) => {
-        console.log("form data ", values);
-        props.login(values.email, values.password, values.rememberMe);
+      onSubmit={(values, { setSubmitting, resetForm, setStatus }) => {
         setSubmitting(true);
-        resetForm();
-        setSubmitting(false);
+        props
+          .login(values.email, values.password, values.rememberMe, setStatus)
+          .then(() => {
+            resetForm();
+            setSubmitting(false);
+          });
       }}
       validationSchema={loginFormSchema}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, status }) => (
         <Form>
           <div>
             <label htmlFor="email">email</label>
@@ -45,9 +48,16 @@ const LoginForm = (props) => {
             <Field type="checkbox" name={"rememberMe"} />{" "}
             <label htmlFor="rememberMe">Remember me</label>
           </div>
+          {status && status.error && (
+            <div>
+              {status.error.map((item, index) => (
+                <p key={index}>{item}</p>
+              ))}
+            </div>
+          )}
           <div>
             <button type="sumbit" disabled={isSubmitting}>
-              Login
+              {isSubmitting ? "Submitting..." : "Submit"}
             </button>
           </div>
         </Form>
