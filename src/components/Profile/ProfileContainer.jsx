@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
 import {
@@ -6,13 +6,15 @@ import {
   getUserProfile,
   updateStatus,
 } from "../../redux/profile-reducer";
-import { useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import {} from "../../hoc/WithAuthRedirect";
 import { compose } from "redux";
+
 export function withRouter(Children) {
   return (props) => {
+    let navigate = useNavigate();
     const match = { params: useParams() };
-    return <Children {...props} match={match} />;
+    return <Children {...props} navigate={navigate} match={match} />;
   };
 }
 class ProfileContainer extends React.Component {
@@ -20,9 +22,15 @@ class ProfileContainer extends React.Component {
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = this.props.authorizedUserId;
+      debugger;
+      if (!userId) {
+        this.props.navigate("/login");
+      }
     }
-    this.props.getUserProfile(userId);
-    this.props.getStatus(userId);
+    if (userId) {
+      this.props.getUserProfile(userId);
+      this.props.getStatus(userId);
+    }
   }
   render() {
     return (
