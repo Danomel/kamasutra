@@ -12,7 +12,7 @@ const initialState = {
   newPostText: "it-kamasutra.com",
   pageSize: 5,
   totalUsersCount: 0,
-  currentPage: 1,
+  page: 1,
   isFetching: true,
   followingInProgress: [],
 };
@@ -42,7 +42,7 @@ const UsersReducer = (state = initialState, action) => {
     case SET_USERS:
       return { ...state, users: action.users };
     case SET_CURRENT_PAGE:
-      return { ...state, currentPage: action.currentPage };
+      return { ...state, page: action.page };
     case SET_TOTAL_USERS_COUNT:
       return {
         ...state,
@@ -76,9 +76,9 @@ export const setUsers = (users) => ({
   users,
 });
 
-export const setCurrentPage = (currentPage) => ({
+export const setCurrentPage = (page) => ({
   type: SET_CURRENT_PAGE,
-  currentPage,
+  page,
 });
 export const setUsersTotalCount = (totalCount) => ({
   type: SET_TOTAL_USERS_COUNT,
@@ -95,14 +95,14 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
   userId,
 });
 
-export const getUsers = (currentPage, pageSize) => {
+export const requestUsers = (page, pageSize) => {
   return (dispatch) => {
     dispatch(toggleIsFetching(true));
-    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+    usersAPI.requestUsers(page, pageSize).then((data) => {
       dispatch(toggleIsFetching(false));
       dispatch(setUsers(data.items));
       dispatch(setUsersTotalCount(data.totalCount));
-      dispatch(setCurrentPage(currentPage));
+      dispatch(setCurrentPage(page));
     });
   };
 };
