@@ -6,13 +6,10 @@ import {
   toggleFollowingProgress,
   requestUsers,
 } from "../../redux/users-reducer";
-import axios from "axios";
 import Users from "./Users";
 import React from "react";
 import Preloader from "../../common/preloader/preloader";
-import { usersAPI } from "../../api/api";
 import { compose } from "redux";
-import { withAuthRedirect } from "../../hoc/WithAuthRedirect";
 import {
   getFollowingInProgress,
   getIsFetching,
@@ -64,6 +61,7 @@ class UsersContainer extends React.Component {
 let mapStateToProps = (state) => {
   return {
     users: getUsers(state),
+    // users: getUsers(state),
     pageSize: getPageSize(state),
     totalUsersCount: getTotalUsersCount(state),
     page: getcurrentPage(state),
