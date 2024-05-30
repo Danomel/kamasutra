@@ -1,12 +1,18 @@
 import React from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {
-  addPostActionCreater,
-  updateNewPostTextActionCreaater,
-} from "../../../redux/profile-reducer";
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
+  // componentDidMount() {
+  //   setTimeout(() => {
+  //     setState({ a: 12 });
+  //   }, 3000);
+  // }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps !== props || nextState !== state;
+  // }
+  console.log("render");
   let postsElements = props.otherPosts.map((p) => (
     <Post message={p.message} like={p.like} />
   ));
@@ -45,6 +51,6 @@ const MyPosts = (props) => {
       <div className={s.posts}>{postsElements}</div>
     </div>
   );
-};
+});
 
 export default MyPosts;
