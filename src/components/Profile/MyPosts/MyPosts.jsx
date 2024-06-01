@@ -13,9 +13,9 @@ const MyPosts = React.memo((props) => {
   //   return nextProps !== props || nextState !== state;
   // }
   console.log("render");
-  let postsElements = props.otherPosts.map((p) => (
-    <Post message={p.message} like={p.like} />
-  ));
+  let postsElements = [...props.otherPosts]
+    .reverse()
+    .map((p) => <Post message={p.message} like={p.like} />);
 
   let newPostElement = React.createRef();
 
@@ -32,7 +32,6 @@ const MyPosts = React.memo((props) => {
 
   return (
     <div className={s.postsBlock}>
-      My posts
       <div>
         <div>
           <textarea

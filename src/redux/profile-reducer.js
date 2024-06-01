@@ -4,6 +4,7 @@ const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
+const DELETE_POST = "DELETE_POST";
 
 const initialState = {
   posts: [
@@ -18,7 +19,7 @@ const initialState = {
       like: 15,
     },
   ],
-  newPostText: "it-kamasutra.com",
+  newPostText: "",
   profile: null,
   status: "",
 };
@@ -65,14 +66,19 @@ const profileReducer = (state = initialState, action) => {
     case ADD_POST: {
       let newPost = {
         id: 5,
-        message: state.newPostText,
+        message: action.newPostText,
         like: 0,
       };
-      let stateCopy = { ...state };
-      stateCopy.posts = [...state.posts];
-      stateCopy.posts.push(newPost);
-      stateCopy.newPostText = "";
-      return stateCopy;
+      return {
+        ...state,
+        posts: [...state.posts, newPost],
+        newPostText: "",
+      };
+      // let stateCopy = { ...state };
+      // stateCopy.posts = [...state.posts];
+      // stateCopy.posts.push(newPost);
+      // stateCopy.newPostText = "";
+      // return stateCopy;
     }
     case UPDATE_NEW_POST_TEXT: {
       let stateCopy = { ...state };
@@ -85,6 +91,11 @@ const profileReducer = (state = initialState, action) => {
     case SET_STATUS: {
       return { ...state, status: action.status };
     }
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((p) => p.id !== action.postId),
+      };
     default:
       return state;
   }
@@ -105,8 +116,9 @@ const profileReducer = (state = initialState, action) => {
   //   return state;
   // }
 };
-export const addPostActionCreater = () => ({
+export const addPostActionCreater = (newPostText) => ({
   type: ADD_POST,
+  newPostText,
 });
 
 export const updateNewPostTextActionCreater = (text) => ({
@@ -121,6 +133,11 @@ export const setUserProfile = (profile) => ({
 export const setStatus = (status) => ({
   type: SET_STATUS,
   status,
+});
+
+export const deletePost = (postId) => ({
+  type: DELETE_POST,
+  postId,
 });
 
 export const getUserProfile = (userId) => {
