@@ -4,8 +4,9 @@ import { Navigate } from "react-router-dom";
 import { login } from "../../redux/auth-reducer";
 import loginFormSchema from "../FormValidation/LoginFormSchema";
 import e from "./error.module.css";
+import { createField } from "../../utils/object-helpers";
 
-const LoginForm = (props) => {
+const LoginForm = ({ login }) => {
   return (
     <Formik
       initialValues={{ email: "", password: "", rememberMe: false }}
@@ -23,12 +24,12 @@ const LoginForm = (props) => {
       }}
       onSubmit={(values, { setSubmitting, resetForm, setStatus }) => {
         setSubmitting(true);
-        props
-          .login(values.email, values.password, values.rememberMe, setStatus)
-          .then(() => {
+        login(values.email, values.password, values.rememberMe, setStatus).then(
+          () => {
             resetForm();
             setSubmitting(false);
-          });
+          }
+        );
       }}
       validationSchema={loginFormSchema}
     >
@@ -36,7 +37,8 @@ const LoginForm = (props) => {
         <Form>
           <div>
             <label htmlFor="email">email</label>
-            <Field type={"text"} name={"email"} placeholder="email" />
+            {/* <Field type={"text"} name={"email"} placeholder="email" /> */}
+            {createField("text", "email", "email")}
             <ErrorMessage className={e.error} name="email" component="div" />
           </div>
           <div>
