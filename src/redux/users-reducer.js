@@ -11,8 +11,8 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 const initialState = {
   users: [],
   newPostText: "it-kamasutra.com",
-  pageSize: 5,
-  totalUsersCount: 0,
+  pageSize: 10,
+  totalItemsCount: 0,
   page: 1,
   isFetching: true,
   followingInProgress: [],
@@ -41,7 +41,7 @@ const UsersReducer = (state = initialState, action) => {
     case SET_TOTAL_USERS_COUNT:
       return {
         ...state,
-        totalUsersCount: action.totalCount,
+        totalItemsCount: action.totalCount,
         // action.totalCount > 45 ? (action.totalCount = 50) : action.totalCount,
       };
     case TOGGLE_IS_FETCHING:
