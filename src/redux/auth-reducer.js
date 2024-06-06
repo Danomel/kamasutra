@@ -41,6 +41,7 @@ export const login =
     if (response.data.resultCode === 0) {
       dispatch(getAuthUserData());
     } else {
+      debugger;
       setStatus({ error: response.data.messages });
     }
   };
