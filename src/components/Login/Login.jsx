@@ -26,7 +26,6 @@ const LoginForm = ({ login }) => {
         setSubmitting(true);
         login(values.email, values.password, values.rememberMe, setStatus).then(
           () => {
-            resetForm();
             setSubmitting(false);
           }
         );

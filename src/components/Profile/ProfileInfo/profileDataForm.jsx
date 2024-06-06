@@ -11,13 +11,14 @@ const ProfileDataForm = ({ profile, saveProfile, setEditMode }) => {
         lookingForAJobDescription: profile.lookingForAJobDescription,
         aboutMe: profile.aboutMe,
       }}
-      onSubmit={(values, { setSubmitting, resetForm, setStatus, status }) => {
+      onSubmit={async (
+        values,
+        { setSubmitting, resetForm, setStatus, status }
+      ) => {
         setSubmitting(true);
-        saveProfile(values, setStatus).then(() => {
-          !status && setEditMode(false);
-          resetForm();
-          setSubmitting(false);
-        });
+        await saveProfile(values, setStatus);
+        setSubmitting(false);
+        setEditMode(false);
       }}
     >
       {({ isSubmitting, status }) => (
@@ -68,7 +69,7 @@ const ProfileDataForm = ({ profile, saveProfile, setEditMode }) => {
             <b>Contacts</b>:{" "}
             {Object.keys(profile.contacts).map((key) => {
               return (
-                <div className={s.contact}>
+                <div key={key} className={s.contact}>
                   <b>
                     {key}: {createField("text", "contacts." + key, key)}
                   </b>

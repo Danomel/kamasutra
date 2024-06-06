@@ -178,12 +178,11 @@ export const saveProfile =
   (profile, setStatus) => async (dispatch, getState) => {
     const userId = getState().auth.userId;
     const response = await profileAPI.saveProfile(profile);
-    console.log(profile);
     if (response.data.resultCode === 0) {
       dispatch(getUserProfile(userId));
     } else {
-      debugger;
       setStatus({ error: response.data.messages });
+      return Promise.reject(response.data.messages);
     }
   };
 export default profileReducer;
