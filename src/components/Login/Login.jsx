@@ -6,7 +6,7 @@ import loginFormSchema from "../FormValidation/LoginFormSchema";
 import e from "./error.module.css";
 import { createField } from "../../utils/object-helpers";
 
-const LoginForm = ({ login }) => {
+const LoginForm = ({ login, captchaUrl }) => {
   return (
     <Formik
       initialValues={{ email: "", password: "", rememberMe: false }}
@@ -24,11 +24,15 @@ const LoginForm = ({ login }) => {
       }}
       onSubmit={(values, { setSubmitting, resetForm, setStatus }) => {
         setSubmitting(true);
-        login(values.email, values.password, values.rememberMe, setStatus).then(
-          () => {
-            setSubmitting(false);
-          }
-        );
+        login(
+          values.email,
+          values.password,
+          values.rememberMe,
+          setStatus,
+          values.captcha
+        ).then(() => {
+          setSubmitting(false);
+        });
       }}
       validationSchema={loginFormSchema}
     >
@@ -49,6 +53,14 @@ const LoginForm = ({ login }) => {
             <Field type="checkbox" name={"rememberMe"} />{" "}
             <label htmlFor="rememberMe">Remember me</label>
           </div>
+          {captchaUrl && <img src={captchaUrl} />}
+          {captchaUrl && (
+            <Field
+              type="text"
+              name={"captcha"}
+              placeholder="Symbols from image"
+            />
+          )}
           {status && status.error && (
             <div>
               {status.error.map((item, index) => (
@@ -72,13 +84,14 @@ const Login = (props) => {
   return (
     <div>
       <h1>Login</h1>
-      <LoginForm {...props} />
+      <LoginForm captchaUrl={props.captchaUrl} {...props} />
     </div>
   );
 };
 
 const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
+  captchaUrl: state.auth.captchaUrl,
 });
 
 export default connect(mapStateToProps, { login })(Login);
