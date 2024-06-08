@@ -16,8 +16,14 @@ const ProfileDataForm = ({ profile, saveProfile, setEditMode }) => {
         { setSubmitting, resetForm, setStatus, status }
       ) => {
         setSubmitting(true);
-        await saveProfile(values, setStatus);
+        try {
+          await saveProfile(values, setStatus);
+          debugger;
+        } catch (error) {
+          let errors = { error };
+        }
         setSubmitting(false);
+
         setEditMode(false);
       }}
     >

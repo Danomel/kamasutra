@@ -1,6 +1,6 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 // import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import { withRouter } from "./components/Profile/ProfileContainer";
@@ -19,8 +19,19 @@ const ProfileContainer = lazy(() =>
   import("./components/Profile/ProfileContainer")
 );
 class App extends React.Component {
+  catchAllUnHandledErrors = (promiseRejectionEvent) => {
+    alert("some error occured");
+    // console.log(promiseRejectionEvent);
+  };
   componentDidMount() {
     this.props.initializeApp();
+    window.addEventListener("unhandledrejection", this.catchAllUnHandledErrors);
+  }
+  componentWillUnmount() {
+    window.removeEventListener(
+      "unhandledrejection",
+      this.catchAllUnHandledErrors
+    );
   }
   render() {
     if (!this.props.initialized) {
@@ -39,6 +50,7 @@ class App extends React.Component {
             }
           >
             <Routes>
+              <Route path="/" element={<Navigate to="/profile" />} />
               <Route path="/dialogs/*" element={<DialogsContainer />} />
               <Route path="/profile/:userId?" element={<ProfileContainer />} />
               <Route path="/users" element={<UsersContainer />} />
@@ -62,11 +74,11 @@ let AppContainer = compose(
 
 const SamuraiJSApp = (props) => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Provider store={store}>
         <AppContainer />
       </Provider>
-    </HashRouter>
+    </BrowserRouter>
   );
 };
 export default SamuraiJSApp;
