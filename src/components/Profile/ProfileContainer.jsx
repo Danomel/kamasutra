@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Profile from "./Profile";
 import { connect } from "react-redux";
 import {
@@ -7,8 +7,8 @@ import {
   savePhoto,
   saveProfile,
   updateStatus,
-} from "../../redux/profile-reducer";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+} from "../../redux/profile-reducer.ts";
+import { useNavigate, useParams } from "react-router-dom";
 import {} from "../../hoc/WithAuthRedirect";
 import { compose } from "redux";
 

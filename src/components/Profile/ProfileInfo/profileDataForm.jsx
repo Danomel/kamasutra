@@ -20,7 +20,7 @@ const ProfileDataForm = ({ profile, saveProfile, setEditMode }) => {
           await saveProfile(values, setStatus);
           debugger;
         } catch (error) {
-          let errors = { error };
+          // let errors = { error };
         }
         setSubmitting(false);
 

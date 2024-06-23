@@ -2,7 +2,7 @@ import profileReducer, {
   addPostActionCreater,
   deletePost,
   updateNewPostTextActionCreater,
-} from "./profile-reducer";
+} from "./profile-reducer.ts";
 let state = {
   posts: [
     {

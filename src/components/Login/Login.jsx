@@ -1,7 +1,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { login } from "../../redux/auth-reducer";
+import { login } from "../../redux/auth-reducer.ts";
 import loginFormSchema from "../FormValidation/LoginFormSchema";
 import e from "./error.module.css";
 import { createField } from "../../utils/object-helpers";
@@ -53,7 +53,7 @@ const LoginForm = ({ login, captchaUrl }) => {
             <Field type="checkbox" name={"rememberMe"} />{" "}
             <label htmlFor="rememberMe">Remember me</label>
           </div>
-          {captchaUrl && <img src={captchaUrl} />}
+          {captchaUrl && <img alt="captcha" src={captchaUrl} />}
           {captchaUrl && (
             <Field
               type="text"

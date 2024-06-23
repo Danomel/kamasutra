@@ -2,16 +2,16 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 // import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
+import UsersContainer from "./components/Users/UsersContainer.tsx";
 import { withRouter } from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
 import React, { Suspense, lazy } from "react";
 import { Provider, connect } from "react-redux";
 import { compose } from "redux";
-import { initializeApp } from "./redux/app-reducer";
+import { initializeApp } from "./redux/app-reducer.ts";
 import Preloader from "./common/preloader/preloader";
-import store from "./redux/redux-store";
+import store from "./redux/redux-store.ts";
 const DialogsContainer = lazy(() =>
   import("./components/Dialogs/DialogsContainer")
 );
@@ -53,7 +53,10 @@ class App extends React.Component {
               <Route path="/" element={<Navigate to="/profile" />} />
               <Route path="/dialogs/*" element={<DialogsContainer />} />
               <Route path="/profile/:userId?" element={<ProfileContainer />} />
-              <Route path="/users" element={<UsersContainer />} />
+              <Route
+                path="/users"
+                element={<UsersContainer pageTitle={"САМУРАИ"} />}
+              />
               <Route path="/login" element={<LoginPage />} />
             </Routes>
           </Suspense>
