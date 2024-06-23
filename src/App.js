@@ -4,7 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 // import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer.tsx";
 import { withRouter } from "./components/Profile/ProfileContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
+import HeaderContainer from "./components/Header/HeaderContainer.tsx";
 import LoginPage from "./components/Login/Login";
 import React, { Suspense, lazy } from "react";
 import { Provider, connect } from "react-redux";
@@ -13,7 +13,7 @@ import { initializeApp } from "./redux/app-reducer.ts";
 import Preloader from "./common/preloader/preloader";
 import store from "./redux/redux-store.ts";
 const DialogsContainer = lazy(() =>
-  import("./components/Dialogs/DialogsContainer")
+  import("./components/Dialogs/DialogsContainer.tsx")
 );
 const ProfileContainer = lazy(() =>
   import("./components/Profile/ProfileContainer")

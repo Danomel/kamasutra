@@ -49,6 +49,7 @@ class ProfileStatus extends React.Component<PropsType, stateType> {
         {this.state.editMode && (
           <div>
             <input
+              // eslint-disable-next-line jsx-a11y/aria-role
               role="input"
               onChange={this.onStatusChange}
               autoFocus={true}

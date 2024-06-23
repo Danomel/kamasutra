@@ -18,8 +18,6 @@ const MyPosts = React.memo((props) => {
     .reverse()
     .map((p) => <Post key={p.id} message={p.message} like={p.like} />);
 
-  let newPostElement = React.createRef();
-
   // let onPostChange = () => {
   //   let text = newPostElement.current.value;
   //   // props.dispatch({ type: "UPDATE-NEW-TEXT", text: text });

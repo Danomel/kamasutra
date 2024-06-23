@@ -1,6 +1,6 @@
 import React from "react";
 import Paginator from "../../common/Paginator/Paginator.tsx";
-import User from "./User.jsx";
+import User from "./User.tsx";
 import { userType } from "../../types/types.ts";
 
 type PropsType = {
