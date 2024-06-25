@@ -73,7 +73,8 @@ export type InitialStateType = typeof initialState;
 //   }
 // };
 
-const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+const dialogsReducer = (state = initialState, action: SendMessageCreaterActionType):
+ InitialStateType => {
   switch (action.type) {
     case SEND_MESSAGE: {
       let body = action.newMessageBody;
@@ -87,7 +88,7 @@ const dialogsReducer = (state = initialState, action: any): InitialStateType => 
 type SendMessageCreaterActionType = {
   type: typeof SEND_MESSAGE,
   newMessageBody: string
-}
+};
 
 export const sendMessageCreater = (newMessageBody: string) : SendMessageCreaterActionType => ({
   type: SEND_MESSAGE,
