@@ -21,7 +21,12 @@ let rootReducer = combineReducers({
 });
 
 type RootReducerType = typeof rootReducer; // (globalState: AppStateType) => AppStateType
-export type AppStateType = ReturnType<RootReducerType>
+export type AppStateType = ReturnType<RootReducerType>;
+
+type PropertiesTypes<T> = T extends {[key: string]: infer U} ? U : never
+
+export type ActionsTypes<T extends {[key: string]: (...args: any[]) => any}> = ReturnType<PropertiesTypes<T>>
+
 // @ts-ignore
 let store = configureStore({ reducer: rootReducer }, applyMiddleware(thunk));
 // @ts-ignore

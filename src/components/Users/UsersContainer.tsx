@@ -12,7 +12,7 @@ import {
   getUsers,
   getcurrentPage,
 } from "../../redux/users-selectors.ts";
-import { userType } from "../../types/types.ts";
+import { UserType } from "../../types/types.ts";
 import { AppStateType } from "../../redux/redux-store.ts";
 
 type MapStatePropsType = {
@@ -20,7 +20,7 @@ type MapStatePropsType = {
   pageSize: number;
   isFetching: boolean;
   totalItemsCount: number;
-  users: Array<userType>;
+  users: Array<UserType>;
   followingInProgress: Array<number>;
 };
 
@@ -36,7 +36,7 @@ type OwnPropsType = {
   pageSize: number;
   isFetching: boolean;
   totalItemsCount: number;
-  users: Array<userType>;
+  users: Array<UserType>;
 };
 
 type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;

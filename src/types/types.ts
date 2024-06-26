@@ -29,7 +29,7 @@ export type ProfileType = {
     photos: photosType | null
   }
 
-export type userType = {
+export type UserType = {
     id: number
     name: number
     status: string

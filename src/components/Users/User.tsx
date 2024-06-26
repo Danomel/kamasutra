@@ -4,10 +4,10 @@ import styles from "./users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import { NavLink } from "react-router-dom";
 import React from "react";
-import { userType } from "../../types/types";
+import { UserType } from "../../types/types";
 
 type PropsType = {
-  user: userType;
+  user: UserType;
   followingInProgress: Array<number>;
   unfollow: (userId: number) => void;
   follow: (userId: number) => void;
