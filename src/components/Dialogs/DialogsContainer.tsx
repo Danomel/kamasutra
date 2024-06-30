@@ -1,4 +1,4 @@
-import { sendMessageCreater } from "../../redux/dialogs-reducer.ts";
+import { actions } from "../../redux/dialogs-reducer.ts";
 import Dialogs from "./Dialogs.tsx";
 import { connect } from "react-redux";
 import { withAuthRedirect } from "../../hoc/WithAuthRedirect.js";
@@ -17,7 +17,7 @@ type MapDispatchPropsType = {
 let mapDispatchToProps = (dispatch: any): MapDispatchPropsType => {
   return {
     onSendMessageClick: (newMessageBody: string) => {
-      dispatch(sendMessageCreater(newMessageBody));
+      dispatch(actions.sendMessageCreater(newMessageBody));
     },
   };
 };

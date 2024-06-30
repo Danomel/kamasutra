@@ -15,7 +15,7 @@ export type contactsType = {
     mainLink: string | null
   }
   
-export type photosType = {
+export type PhotosType = {
     small: string | null
     large: string | null
   }
@@ -26,14 +26,14 @@ export type ProfileType = {
     lookingForAJobDescription: string | null,
     fullName: string | null,
     contacts: contactsType | null,
-    photos: photosType | null
+    photos: PhotosType | null
   }
 
 export type UserType = {
     id: number
-    name: number
-    status: string
-    photos: photosType
+    name: string
+    status: string | null
+    photos: PhotosType
     followed: boolean
   }
 

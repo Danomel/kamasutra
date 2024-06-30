@@ -1,7 +1,6 @@
+import { ProfileType } from "../types/types.ts";
 import profileReducer, {
-  addPostActionCreater,
-  deletePost,
-  updateNewPostTextActionCreater,
+  actions
 } from "./profile-reducer.ts";
 let state = {
   posts: [
@@ -16,11 +15,12 @@ let state = {
       like: 15,
     },
   ],
-  newPostText: "",
+  profile: null as ProfileType | null,
+  status: "",
 };
 test("length of posts should be incremented", () => {
   // 1. test data
-  let action = addPostActionCreater("it-kamasutra.com");
+  let action = actions.addPostActionCreater("it-kamasutra.com");
   // 2. action
   let newState = profileReducer(state, action);
 
@@ -30,7 +30,7 @@ test("length of posts should be incremented", () => {
 
 test("message of new posts should be correct", () => {
   // 1. test data
-  let action = addPostActionCreater("it-kamasutra.com");
+  let action = actions.addPostActionCreater("it-kamasutra.com");
 
   // 2. action
   let newState = profileReducer(state, action);
@@ -41,7 +41,7 @@ test("message of new posts should be correct", () => {
 
 test("after deleting length of messages should be decrement", () => {
   // 1. test data
-  let action = deletePost(1);
+  let action = actions.deletePost(1);
 
   // 2. action
   let newState = profileReducer(state, action);
@@ -52,7 +52,7 @@ test("after deleting length of messages should be decrement", () => {
 
 test("after deleting length shouldn't be decrement if id is incorrect", () => {
   // 1. test data
-  let action = deletePost(1000);
+  let action = actions.deletePost(1000);
 
   // 2. action
   let newState = profileReducer(state, action);
