@@ -32,11 +32,6 @@ type MapDispatchPropsType = {
 
 type OwnPropsType = {
   pageTitle: string;
-  page: number;
-  pageSize: number;
-  isFetching: boolean;
-  totalItemsCount: number;
-  users: Array<UserType>;
 };
 
 type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType;

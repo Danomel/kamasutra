@@ -1,25 +1,31 @@
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar.jsx";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 // import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer.tsx";
-import { withRouter } from "./components/Profile/ProfileContainer";
+import { withRouter } from "./components/Profile/ProfileContainer.tsx";
 import HeaderContainer from "./components/Header/HeaderContainer.tsx";
-import LoginPage from "./components/Login/Login";
+import LoginPage from "./components/Login/Login.jsx";
 import React, { Suspense, lazy } from "react";
 import { Provider, connect } from "react-redux";
 import { compose } from "redux";
 import { initializeApp } from "./redux/app-reducer.ts";
-import Preloader from "./common/preloader/preloader";
-import store from "./redux/redux-store.ts";
-const DialogsContainer = lazy(() =>
-  import("./components/Dialogs/DialogsContainer.tsx")
+import Preloader from "./common/preloader/preloader.js";
+import store, { AppStateType } from "./redux/redux-store.ts";
+import UsersContainer from "./components/Users/UsersContainer.tsx";
+const DialogsContainer = lazy(
+  () => import("./components/Dialogs/DialogsContainer.tsx")
 );
-const ProfileContainer = lazy(() =>
-  import("./components/Profile/ProfileContainer")
+const ProfileContainer = lazy(
+  () => import("./components/Profile/ProfileContainer.tsx")
 );
-class App extends React.Component {
-  catchAllUnHandledErrors = (promiseRejectionEvent) => {
+
+type MapPropsType = ReturnType<typeof mapStateToProps>;
+type DispatchPropsType = {
+  initializeApp: () => void;
+};
+
+class App extends React.Component<MapPropsType & DispatchPropsType> {
+  catchAllUnHandledErrors = (e: PromiseRejectionEvent) => {
     alert("some error occured");
     // console.log(promiseRejectionEvent);
   };
@@ -66,7 +72,7 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType) => ({
   initialized: state.app.initialized,
 });
 
@@ -75,7 +81,7 @@ let AppContainer = compose(
   connect(mapStateToProps, { initializeApp })
 )(App);
 
-const SamuraiJSApp = (props) => {
+const SamuraiJSApp: React.FC = () => {
   return (
     <BrowserRouter>
       <Provider store={store}>

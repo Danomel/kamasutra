@@ -1,10 +1,28 @@
 import Preloader from "../../../common/preloader/preloader";
+// @ts-ignore
 import s from "./ProfileInfo.module.css";
-import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks.tsx";
+// @ts-ignore
 import userPhoto from "../../../assets/images/user.png";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import ProfileDataForm from "./profileDataForm";
-const ProfileInfo = ({
+import React from "react";
+import { ProfileType } from "../../../types/types";
+export type ProfileValuesType = {
+  fullName: string;
+  lookingForAJob: boolean;
+  lookingForAJobDescription: string;
+  aboutMe: string;
+};
+type PropsType = {
+  profile: ProfileType | null;
+  status: string;
+  updateStatus: (newStatus: string) => void;
+  isOwner: boolean;
+  savePhoto: (file: File) => void;
+  saveProfile: (values: ProfileValuesType, status: string) => void;
+};
+const ProfileInfo: React.FC<PropsType> = ({
   profile,
   status,
   updateStatus,
@@ -16,8 +34,8 @@ const ProfileInfo = ({
   if (!profile) {
     return <Preloader />;
   }
-  const onMainPhotoSelected = (e) => {
-    if (e.target.files.length) {
+  const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.length) {
       savePhoto(e.target.files[0]);
     }
   };
@@ -58,7 +76,17 @@ const ProfileInfo = ({
   );
 };
 
-const ProfileData = ({ profile, isOwner, goToEditMode }) => {
+type ProfileDataType = {
+  profile: ProfileType;
+  isOwner: boolean;
+  goToEditMode: () => void;
+};
+
+const ProfileData: React.FC<ProfileDataType> = ({
+  profile,
+  isOwner,
+  goToEditMode,
+}) => {
   return (
     <div>
       {isOwner && (
@@ -96,8 +124,14 @@ const ProfileData = ({ profile, isOwner, goToEditMode }) => {
     </div>
   );
 };
-
-const Contact = ({ contactTitle, contactValue }) => {
+type ContactsPropsType = {
+  contactTitle: string;
+  contactValue: string;
+};
+const Contact: React.FC<ContactsPropsType> = ({
+  contactTitle,
+  contactValue,
+}) => {
   return (
     <div className={s.contact}>
       <b>{contactTitle}</b>: {contactValue}

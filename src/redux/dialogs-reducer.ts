@@ -84,7 +84,7 @@ const initialState = {
   }
 };
 export const actions = {
-  sendMessageCreater :(newMessageBody: string)  => ({
+  sendMessage :(newMessageBody: string)  => ({
     type: "SN/DIALOGS/SEND_MESSAGE",
     newMessageBody
   }) as const}

@@ -1,14 +1,14 @@
 import { Field, Form, Formik } from "formik";
 import React from "react";
 
-type PropsType = { onSendMessageClick: (newMessageText: string) => void };
+type PropsType = { SendMessage: (newMessageText: string) => void };
 
-const DialogsForm: React.FC<PropsType> = ({ onSendMessageClick }) => {
+const DialogsForm: React.FC<PropsType> = ({ SendMessage }) => {
   return (
     <Formik
       initialValues={{ message: "" }}
       onSubmit={(values, { resetForm }) => {
-        onSendMessageClick(values.message);
+        SendMessage(values.message);
         resetForm();
       }}
     >
