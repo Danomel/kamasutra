@@ -64,8 +64,9 @@ export const login =
   };
 
 export const logout = (): ThunkType => async (dispatch) => {
+  debugger
   const response = await authAPI.logout();
-  if (response.data.resultCode === ResultCodesEnum.Success) {
+  if (response.resultCode === ResultCodesEnum.Success) {
     dispatch(actions.setAuthUserData(null, null, null, false));
   }
 };
