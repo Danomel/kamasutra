@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import s from "./Navbar.module.css";
-const Navbar = () => {
+import React from "react";
+const Navbar: React.FC = () => {
   return (
     <nav className={s.nav}>
       <div className={`${s.item} ${s.active}`}>

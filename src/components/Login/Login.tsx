@@ -2,16 +2,42 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { login } from "../../redux/auth-reducer.ts";
-import loginFormSchema from "../FormValidation/LoginFormSchema";
+import loginFormSchema from "../FormValidation/LoginFormSchema.js";
 import e from "./error.module.css";
-import { createField } from "../../utils/object-helpers";
+import { createField } from "../../utils/object-helpers.js";
+import React from "react";
+import { AppStateType } from "../../redux/redux-store.ts";
 
-const LoginForm = ({ login, captchaUrl }) => {
+type MapDispatchType = {
+  login: (
+    email: string,
+    password: string,
+    rememberMe: boolean,
+    setStatus: (status?: string) => void,
+    captcha: string | null
+  ) => Promise<void>;
+};
+
+type MapPropsType = {
+  captchaUrl: string | null;
+  isAuth: boolean;
+};
+
+type PropsType = MapDispatchType & MapPropsType;
+
+type FormPropsType = MapDispatchType & { captchaUrl: string | null };
+
+const LoginForm: React.FC<FormPropsType> = ({ login, captchaUrl }) => {
   return (
     <Formik
-      initialValues={{ email: "", password: "", rememberMe: false }}
+      initialValues={{
+        email: "",
+        password: "",
+        rememberMe: false,
+        captcha: "",
+      }}
       validate={(values) => {
-        const errors = {};
+        const errors: any = {};
         if (!values.email) {
           errors.email = "Required";
         } else if (
@@ -69,7 +95,7 @@ const LoginForm = ({ login, captchaUrl }) => {
             </div>
           )}
           <div>
-            <button type="sumbit" disabled={isSubmitting}>
+            <button type="submit" disabled={isSubmitting}>
               {isSubmitting ? "Submitting..." : "Submit"}
             </button>
           </div>
@@ -79,17 +105,17 @@ const LoginForm = ({ login, captchaUrl }) => {
   );
 };
 
-const Login = (props) => {
+const Login: React.FC<PropsType> = (props) => {
   if (props.isAuth) return <Navigate to={"/profile"} />;
   return (
     <div>
       <h1>Login</h1>
-      <LoginForm captchaUrl={props.captchaUrl} {...props} />
+      <LoginForm captchaUrl={props.captchaUrl} login={props.login} />
     </div>
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: AppStateType): MapPropsType => ({
   isAuth: state.auth.isAuth,
   captchaUrl: state.auth.captchaUrl,
 });
