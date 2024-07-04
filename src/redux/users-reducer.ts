@@ -107,6 +107,7 @@ export const requestUsers = (page: number, pageSize: number): ThunkType => {
     // let a = getState().asdasdasd.fdg;
     dispatch(actions.toggleIsFetching(true));
     let data = await usersAPI.requestUsers(page, pageSize);
+    debugger
     dispatch(actions.toggleIsFetching(false));
     dispatch(actions.setUsers(data.items));
     dispatch(actions.setUsersTotalCount(data.totalCount));
@@ -120,9 +121,10 @@ const _followUnfollowFlow = async (
   apiMethod: any,
   actionCreator: (userId: number) => ActionsTypes
 ) => {
+  debugger
   dispatch(actions.toggleFollowingProgress(true, userId));
-  const response = await apiMethod;
-  if (response.data.resultCode === 0) {
+  const response = await apiMethod
+  if (response.resultCode === 0) {
     dispatch(actionCreator(userId));
   }
   dispatch(actions.toggleFollowingProgress(false, userId));

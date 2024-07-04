@@ -1,4 +1,4 @@
-import Preloader from "../../../common/preloader/preloader";
+import Preloader from "../../../common/preloader/preloader.tsx";
 // @ts-ignore
 import s from "./ProfileInfo.module.css";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks.tsx";

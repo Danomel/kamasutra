@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import { follow, unfollow, requestUsers } from "../../redux/users-reducer.ts";
 import Users from "./Users.tsx";
 import React from "react";
-import Preloader from "../../common/preloader/preloader.js";
+import Preloader from "../../common/preloader/preloader.tsx";
 import { compose } from "redux";
 import {
   getFollowingInProgress,
