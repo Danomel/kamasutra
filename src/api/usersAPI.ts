@@ -1,8 +1,9 @@
 import { GetItemsType, APIResponseType, instance } from "./api.ts";
 
 export const usersAPI = {
-  async requestUsers(page = 1, pageSize = 10) {
-    const res = await instance.get<GetItemsType>(`users?page=${page}&count=${pageSize}`);
+  async requestUsers(page = 1, pageSize = 10, term: string = "", friend: null | boolean = null) {
+    const res = await instance.get<GetItemsType>(`users?page=${page}&count=${pageSize}&term=${term}` 
+      + (friend === null ? '' : `&friend=${friend}`));
     return res.data;
   },
 
