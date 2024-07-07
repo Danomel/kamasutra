@@ -4,14 +4,14 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 // import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import { withRouter } from "./components/Profile/ProfileContainer.tsx";
 import HeaderContainer from "./components/Header/HeaderContainer.tsx";
-import LoginPage from "./components/Login/Login.tsx";
+import { LoginPage } from "./components/Login/Login.tsx";
 import React, { Suspense, lazy } from "react";
 import { Provider, connect } from "react-redux";
 import { compose } from "redux";
 import { initializeApp } from "./redux/app-reducer.ts";
 import Preloader from "./common/preloader/preloader.tsx";
 import store, { AppStateType } from "./redux/redux-store.ts";
-import UsersContainer from "./components/Users/UsersContainer.tsx";
+import UsersPage from "./components/Users/UsersContainer.tsx";
 const DialogsContainer = lazy(
   () => import("./components/Dialogs/DialogsContainer.tsx")
 );
@@ -61,7 +61,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
               <Route path="/profile/:userId?" element={<ProfileContainer />} />
               <Route
                 path="/users"
-                element={<UsersContainer pageTitle={"САМУРАИ"} />}
+                element={<UsersPage pageTitle={"САМУРАИ"} />}
               />
               <Route path="/login" element={<LoginPage />} />
             </Routes>
