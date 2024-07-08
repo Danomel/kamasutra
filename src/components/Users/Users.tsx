@@ -19,6 +19,7 @@ import {
 } from "../../redux/users-selectors.ts";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/redux-store.ts";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 const Users: React.FC = (props) => {
   const users = useSelector(getUsers);
@@ -28,10 +29,50 @@ const Users: React.FC = (props) => {
   const filter = useSelector(getUsersFilter);
   const followingInProgress = useSelector(getFollowingInProgress);
 
+  type QueryParamsType = {
+    term?: string;
+    page?: string;
+    friend?: string;
+  };
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const { search } = useLocation();
+  const [searchParams] = useSearchParams(search);
+  debugger;
   useEffect(() => {
-    dispatch(requestUsers(page, pageSize, filter));
-  }, [dispatch, filter, page, pageSize]);
+    let parsed = Object.fromEntries([...searchParams]) as QueryParamsType;
+    let actualPage = page;
+    let actualFilter = filter;
+    if (!!parsed.page) actualPage = Number(parsed.page);
+
+    if (!!parsed.term) actualFilter = { ...actualFilter, term: parsed.term };
+
+    switch (parsed.friend) {
+      case "null":
+        actualFilter = { ...actualFilter, friend: null };
+        break;
+      case "true":
+        actualFilter = { ...actualFilter, friend: true };
+        break;
+      case "false":
+        actualFilter = { ...actualFilter, friend: false };
+    }
+    dispatch(requestUsers(actualPage, pageSize, actualFilter));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    const query: QueryParamsType = {};
+    if (!!filter.term) query.term = filter.term;
+    if (filter.friend !== null) query.friend = String(filter.friend);
+    if (page !== 1) query.page = String(page);
+
+    const queryString = new URLSearchParams(query).toString();
+    navigate({
+      pathname: "/users",
+      search: queryString,
+    });
+  }, [filter, navigate, page]);
 
   const onPageChanged = (pageNumber: number) => {
     dispatch(requestUsers(pageNumber, pageSize, filter));
