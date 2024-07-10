@@ -69,7 +69,7 @@ const Users: React.FC = (props) => {
 
     const queryString = new URLSearchParams(query).toString();
     navigate({
-      pathname: "/users",
+      pathname: "/developers",
       search: queryString,
     });
   }, [filter, navigate, page]);
