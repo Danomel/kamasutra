@@ -1,9 +1,9 @@
 import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
-import { login } from "../../redux/auth-reducer.ts";
+import { login } from "../../redux/auth-reducer";
 import React from "react";
-import { AppStateType } from "../../redux/redux-store.ts";
-import LoginForm from "./LoginForm.tsx";
+import { AppStateType } from "../../redux/redux-store";
+import LoginForm from "./LoginForm";
 import { useSelector } from "react-redux";
 
 export const LoginPage: React.FC = (props) => {

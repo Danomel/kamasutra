@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",  // Здесь указывается базовая директория для путей
+    "paths": {
+      "assets/*": ["assets/*"]  // Это создает псевдоним для импорта вида `assets/...`
+    },
+    // Остальные опции оставляем без изменений
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "typeRoots": ["./node_modules/@types", "./ts-declarations"]
+  },
+  "include": [
+    "src",
+    "ts-declarations"
+  ]
+}

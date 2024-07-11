@@ -7,12 +7,12 @@ import { useSelector } from "react-redux";
 import {
   selectCurrentUserLogin,
   selectIsAuth,
-} from "../../redux/auth-selectors.ts";
+} from "../../redux/auth-selectors";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../redux/redux-store.ts";
-import { logout } from "../../redux/auth-reducer.ts";
+import { AppDispatch } from "../../redux/redux-store";
+import { logout } from "../../redux/auth-reducer";
 
-export const Header: React.FC<PropsType> = (props) => {
+export const Header: React.FC = (props) => {
   const isAuth = useSelector(selectIsAuth);
   const login = useSelector(selectCurrentUserLogin);
   const dispatch: AppDispatch = useDispatch();

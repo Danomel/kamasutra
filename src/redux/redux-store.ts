@@ -4,13 +4,13 @@ import {
   combineReducers,
   configureStore,
 } from "@reduxjs/toolkit";
-import profileReducer from "./profile-reducer.ts";
-import dialogsReducer from "./dialogs-reducer.ts";
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer.js";
-import UsersReducer from "./users-reducer.ts";
-import authReducer from "./auth-reducer.ts";
+import UsersReducer from "./users-reducer";
+import authReducer from "./auth-reducer";
 import { ThunkAction, thunk } from "redux-thunk";
-import appReducer from "./app-reducer.ts";
+import appReducer from "./app-reducer";
 
 let rootReducer = combineReducers({
   profilePage: profileReducer,

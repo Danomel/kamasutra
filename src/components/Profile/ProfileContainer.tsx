@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from "./Profile.tsx";
+import Profile from "./Profile";
 import { connect } from "react-redux";
 import {
   getStatus,
@@ -7,15 +7,15 @@ import {
   savePhoto,
   saveProfile,
   updateStatus,
-} from "../../redux/profile-reducer.ts";
+} from "../../redux/profile-reducer";
 import { useNavigate, useParams } from "react-router-dom";
-import {} from "../../hoc/WithAuthRedirect.tsx";
+import {} from "../../hoc/WithAuthRedirect";
 import { compose } from "redux";
-import { AppStateType } from "../../redux/redux-store.ts";
-import { ProfileValuesType } from "./ProfileInfo/ProfileInfo.tsx";
+import { AppStateType } from "../../redux/redux-store";
+import { ProfileValuesType } from "./ProfileInfo/ProfileInfo";
 
-export function withRouter(Children) {
-  return (props) => {
+export function withRouter(Children: any) {
+  return (props: any) => {
     let navigate = useNavigate();
     const match = { params: useParams() };
     return <Children {...props} navigate={navigate} match={match} />;
@@ -56,7 +56,7 @@ class ProfileContainer extends React.Component<PropsType> {
     this.refreshProfile();
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate(prevProps: PropsType, prevState: PropsType) {
     debugger;
     if (this.props.match.params.userId !== prevProps.match.params.userId)
       this.refreshProfile();

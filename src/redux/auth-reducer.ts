@@ -1,7 +1,7 @@
-import { ResultCodeForCaptchaEnum, ResultCodesEnum } from "../api/api.ts";
+import { ResultCodeForCaptchaEnum, ResultCodesEnum } from "../api/api";
 import { BaseThunkType, InferActionsTypes } from "./redux-store";
-import { authAPI } from "../api/authAPI.ts";
-import { securityAPI } from "../api/securityAPI.ts";
+import { authAPI } from "../api/authAPI";
+import { securityAPI } from "../api/securityAPI";
 
 
 const initialState = {

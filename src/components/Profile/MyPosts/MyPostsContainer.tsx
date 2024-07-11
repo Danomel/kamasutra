@@ -1,7 +1,7 @@
-import MyPosts, { DispatchPropsType, MapPropsType } from "./MyPosts.tsx";
-import { actions } from "../../../redux/profile-reducer.ts";
+import MyPosts, { DispatchPropsType, MapPropsType } from "./MyPosts";
+import { actions } from "../../../redux/profile-reducer";
 import { connect } from "react-redux";
-import { AppStateType } from "../../../redux/redux-store.ts";
+import { AppStateType } from "../../../redux/redux-store";
 
 let mapStateToProps = (state: AppStateType) => {
   return {

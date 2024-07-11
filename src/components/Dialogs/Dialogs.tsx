@@ -1,10 +1,10 @@
 // @ts-ignore
 import s from "./Dialogs.module.css";
-import DialogItem from "./DialogItem/DialogItem.tsx";
-import Message from "./Message/Message.tsx";
+import DialogItem from "./DialogItem/DialogItem";
+import Message from "./Message/Message";
 import React, { FC } from "react";
-import DialogsForm from "./Message/DialogsForm.tsx";
-import { InitialStateType } from "../../redux/dialogs-reducer.ts";
+import DialogsForm from "./Message/DialogsForm";
+import { InitialStateType } from "../../redux/dialogs-reducer";
 
 type OwnPropsType = {
   dialogsPage: InitialStateType;

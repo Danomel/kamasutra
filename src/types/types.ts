@@ -5,6 +5,7 @@ export type PostType = {
   }
   
 export type contactsType = {
+    [key: string]: string | null;
     github: string | null
     vk: string | null
     facebook: string | null

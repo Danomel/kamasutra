@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import Paginator from "../../common/Paginator/Paginator.tsx";
-import User from "./User.tsx";
-import UsersSearchForm from "./UsersSearchForm.tsx";
+import Paginator from "../../common/Paginator/Paginator";
+import User from "./User";
+import UsersSearchForm from "./UsersSearchForm";
 import {
   FilterType,
   follow,
   requestUsers,
   unfollow,
-} from "../../redux/users-reducer.ts";
+} from "../../redux/users-reducer";
 import { useSelector } from "react-redux";
 import {
   getcurrentPage,
@@ -16,9 +16,9 @@ import {
   getTotalUsersCount,
   getUsers,
   getUsersFilter,
-} from "../../redux/users-selectors.ts";
+} from "../../redux/users-selectors";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../redux/redux-store.ts";
+import { AppDispatch } from "../../redux/redux-store";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 
 const Users: React.FC = (props) => {
@@ -38,10 +38,14 @@ const Users: React.FC = (props) => {
   const navigate = useNavigate();
 
   const { search } = useLocation();
-  const [searchParams] = useSearchParams(search);
+  const searchParams = new URLSearchParams(search);
   debugger;
   useEffect(() => {
-    let parsed = Object.fromEntries([...searchParams]) as QueryParamsType;
+    let parsed: QueryParamsType = {
+      term: searchParams.get("term") ?? undefined,
+      page: searchParams.get("page") ?? undefined,
+      friend: searchParams.get("friend") ?? undefined,
+    };
     let actualPage = page;
     let actualFilter = filter;
     if (!!parsed.page) actualPage = Number(parsed.page);

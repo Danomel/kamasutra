@@ -1,8 +1,6 @@
-import Preloader from "../../../common/preloader/preloader.tsx";
-// @ts-ignore
+import Preloader from "../../../common/preloader/preloader";
 import s from "./ProfileInfo.module.css";
-import ProfileStatusWithHooks from "./ProfileStatusWithHooks.tsx";
-// @ts-ignore
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../../assets/images/user.png";
 import { ChangeEvent, useState } from "react";
 import ProfileDataForm from "./profileDataForm";
@@ -126,7 +124,7 @@ const ProfileData: React.FC<ProfileDataType> = ({
 };
 type ContactsPropsType = {
   contactTitle: string;
-  contactValue: string;
+  contactValue: string | null;
 };
 const Contact: React.FC<ContactsPropsType> = ({
   contactTitle,

@@ -1,11 +1,11 @@
-import { actions } from "../../redux/dialogs-reducer.ts";
-import Dialogs from "./Dialogs.tsx";
+import { actions } from "../../redux/dialogs-reducer";
+import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
-import { withAuthRedirect } from "../../hoc/WithAuthRedirect.tsx";
+import { withAuthRedirect } from "../../hoc/WithAuthRedirect";
 import { compose } from "redux";
-import { AppStateType } from "../../redux/redux-store.ts";
-// import { DialogsPageType } from "../../types/types.ts";
-import { InitialStateType } from "../../redux/dialogs-reducer.ts";
+import { AppStateType } from "../../redux/redux-store";
+// import { DialogsPageType } from "../../types/types";
+import { InitialStateType } from "../../redux/dialogs-reducer";
 type MapStatePropsType = {
   dialogsPage: InitialStateType;
 };

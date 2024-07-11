@@ -1,5 +1,5 @@
-import { APIResponseType, ResultCodeForCaptchaEnum, ResultCodesEnum } from "./api.ts";
-import { instance } from "./api.ts";
+import { APIResponseType, ResultCodeForCaptchaEnum, ResultCodesEnum } from "./api";
+import { instance } from "./api";
 
 export type MeResponseDataType = {id: number; email: string; login: string};
 export type LoginResponseDataType = {userId: number};

@@ -1,7 +1,7 @@
-import { ProfileType } from "../types/types.ts";
+import { ProfileType } from "../types/types";
 import profileReducer, {
   actions
-} from "./profile-reducer.ts";
+} from "./profile-reducer";
 let state = {
   posts: [
     {

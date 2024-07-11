@@ -1,6 +1,6 @@
-import { profileAPI } from "../api/profileAPI.ts";
+import { profileAPI } from "../api/profileAPI";
 import { PostType, ProfileType, PhotosType } from "../types/types";
-import { BaseThunkType, InferActionsTypes } from "./redux-store.ts";
+import { BaseThunkType, InferActionsTypes } from "./redux-store";
 
 const initialState = {
   posts: [

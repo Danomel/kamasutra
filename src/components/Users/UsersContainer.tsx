@@ -1,7 +1,7 @@
-import Users from "./Users.tsx";
+import Users from "./Users";
 import React from "react";
-import Preloader from "../../common/preloader/preloader.tsx";
-import { getIsFetching } from "../../redux/users-selectors.ts";
+import Preloader from "../../common/preloader/preloader";
+import { getIsFetching } from "../../redux/users-selectors";
 import { useSelector } from "react-redux";
 type UsersPagePropsType = {
   pageTitle: string;

@@ -4,7 +4,7 @@ import { createField } from "../../utils/object-helpers";
 import e from "./error.module.css";
 import loginFormSchema from "../FormValidation/LoginFormSchema";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/auth-reducer.ts";
+import { login } from "../../redux/auth-reducer";
 import { AppDispatch } from "../../redux/redux-store";
 
 type FormPropsType = { captchaUrl: string | null };
@@ -73,7 +73,7 @@ const LoginForm: React.FC<FormPropsType> = ({ captchaUrl }) => {
           )}
           {status && status.error && (
             <div>
-              {status.error.map((item, index) => (
+              {status.error.map((item: string, index: number) => (
                 <p key={index}>{item}</p>
               ))}
             </div>

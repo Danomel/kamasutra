@@ -2,8 +2,8 @@ import { Dispatch } from "redux";
 import { UserType } from "../types/types";
 import { updateObjectArray } from "../utils/object-helpers";
 import { BaseThunkType, InferActionsTypes } from "./redux-store";
-import { usersAPI } from "../api/usersAPI.ts";
-import { APIResponseType } from "../api/api.ts";
+import { usersAPI } from "../api/usersAPI";
+import { APIResponseType } from "../api/api";
 
 const initialState = {
   users: [] as Array<UserType>,
@@ -153,7 +153,7 @@ export const follow = (userId: number): ThunkType => {
   };
 };
 
-export const unfollow = (userId): ThunkType => {
+export const unfollow = (userId: number): ThunkType => {
   return async (dispatch) => {
     await _followUnfollowFlow(
       dispatch,

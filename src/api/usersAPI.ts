@@ -1,4 +1,4 @@
-import { GetItemsType, APIResponseType, instance } from "./api.ts";
+import { GetItemsType, APIResponseType, instance } from "./api";
 
 export const usersAPI = {
   async requestUsers(page = 1, pageSize = 10, term: string = "", friend: null | boolean = null) {

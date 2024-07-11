@@ -1,5 +1,5 @@
 import "./App.css";
-import Navbar from "./components/Navbar/Navbar.tsx";
+import Navbar from "./components/Navbar/Navbar";
 import s from "./components/Navbar/Navbar.module.css";
 import {
   BrowserRouter,
@@ -10,15 +10,15 @@ import {
   Routes,
 } from "react-router-dom";
 // import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import { withRouter } from "./components/Profile/ProfileContainer.tsx";
-import { LoginPage } from "./components/Login/Login.tsx";
+import { withRouter } from "./components/Profile/ProfileContainer";
+import { LoginPage } from "./components/Login/Login";
 import React, { Suspense, lazy } from "react";
 import { Provider, connect } from "react-redux";
 import { compose } from "redux";
-import { initializeApp } from "./redux/app-reducer.ts";
-import Preloader from "./common/preloader/preloader.tsx";
-import store, { AppStateType } from "./redux/redux-store.ts";
-import UsersPage from "./components/Users/UsersContainer.tsx";
+import { initializeApp } from "./redux/app-reducer";
+import Preloader from "./common/preloader/preloader";
+import store, { AppStateType } from "./redux/redux-store";
+import UsersPage from "./components/Users/UsersContainer";
 
 import {
   LaptopOutlined,
@@ -28,13 +28,14 @@ import {
 import type { MenuProps } from "antd";
 import { Avatar, Breadcrumb, Layout, Menu, theme } from "antd";
 import useToken from "antd/es/theme/useToken";
-import { Header } from "./components/Header/Header.tsx";
+import { Header } from "./components/Header/Header";
 const DialogsContainer = lazy(
-  () => import("./components/Dialogs/DialogsContainer.tsx")
+  () => import("./components/Dialogs/DialogsContainer")
 );
 const ProfileContainer = lazy(
-  () => import("./components/Profile/ProfileContainer.tsx")
+  () => import("./components/Profile/ProfileContainer")
 );
+const ChatPage = lazy(() => import("./pages/chat/ChatPage"));
 
 type MapPropsType = ReturnType<typeof mapStateToProps>;
 type DispatchPropsType = {
@@ -88,23 +89,23 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
           },
         ],
       },
-      // {
-      //   key: "sub2",
-      //   icon: <LaptopOutlined />,
-      //   label: "Пользователи",
-      //   children: [
-      //     {
-      //       key: "3",
-      //       label: (
-      //         <div className={s.item}>
-      //           <NavLink to={"/users"} className={s.item}>
-      //             Пользователи
-      //           </NavLink>
-      //         </div>
-      //       ),
-      //     },
-      //   ],
-      // },
+      {
+        key: "sub2",
+        icon: <LaptopOutlined />,
+        label: "Чат",
+        children: [
+          {
+            key: "3",
+            label: (
+              <div className={s.item}>
+                <NavLink to={"/chat"} className={s.item}>
+                  Чат
+                </NavLink>
+              </div>
+            ),
+          },
+        ],
+      },
     ];
 
     // const {
@@ -161,6 +162,7 @@ class App extends React.Component<MapPropsType & DispatchPropsType> {
                     path="/developers"
                     element={<UsersPage pageTitle={"САМУРАИ"} />}
                   />
+                  <Route path="/chat" element={<ChatPage />} />
                   <Route path="/login" element={<LoginPage />} />
                 </Routes>
               </Suspense>

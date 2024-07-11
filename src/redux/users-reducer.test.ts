@@ -24,7 +24,11 @@ pageSize: 10,
 totalItemsCount: 0,
 page: 1,
 isFetching: true,
-followingInProgress: []
+followingInProgress: [],
+filter: {
+  term: "",
+  friend: null as null | boolean
+}
 }
 beforeEach(() => {
   state = {
@@ -52,7 +56,11 @@ beforeEach(() => {
   totalItemsCount: 0,
   page: 1,
   isFetching: true,
-  followingInProgress: []}
+  followingInProgress: [],
+  filter: {
+    term: "",
+    friend: null as null | boolean
+  }}
 })
 test("followSuccess", () => {
   const newState = UsersReducer(state, actions.followSuccess(1))
