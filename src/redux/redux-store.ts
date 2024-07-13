@@ -11,6 +11,7 @@ import UsersReducer from "./users-reducer";
 import authReducer from "./auth-reducer";
 import { ThunkAction, thunk } from "redux-thunk";
 import appReducer from "./app-reducer";
+import chatReducer from "./chat-reducer";
 
 let rootReducer = combineReducers({
   profilePage: profileReducer,
@@ -19,6 +20,7 @@ let rootReducer = combineReducers({
   usersPage: UsersReducer,
   auth: authReducer,
   app: appReducer,
+  chat: chatReducer
 });
 
 type RootReducerType = typeof rootReducer; // (globalState: AppStateType) => AppStateType
